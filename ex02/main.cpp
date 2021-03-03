@@ -7,33 +7,47 @@ int	main()
 	using std::cout;
 	using std::endl;
 
-	MutantStack<int>	stack;
+	MutantStack<int>	mStack;
 
 	cout << "* push 42 *" << endl;
-	stack.push(42);
+	mStack.push(42);
 
-	cout << "stack.top(): " << stack.top() << endl;
+	cout << "mStack.top(): " << mStack.top() << endl;
 
 	cout << endl << "* push 101 *" << endl;
-	stack.push(101);
+	mStack.push(101);
 
-	cout << "stack.top(): " <<  stack.top() << endl;
+	cout << "mStack.top(): " <<  mStack.top() << endl;
 
 	cout << endl << "* pop *" << endl;
-	stack.pop();
+	mStack.pop();
 
-	cout << "stack.top(): " <<  stack.top() << endl;
+	cout << "mStack.top(): " <<  mStack.top() << endl;
 
 	cout << endl << "* push 101 *" << endl;
-	stack.push(101);
+	mStack.push(101);
 
-	cout << "stack[0]: " << stack[0] << ", stack[1]: " << stack[1] << endl;
+	cout << "mStack[0]: " << mStack[0] << ", mStack[1]: " << mStack[1] << endl;
 
-	cout << "stack.size(): " << stack.size() << endl;
+	cout << "mStack.size(): " << mStack.size() << endl;
+
+	cout << endl << "* using iterators *" << endl;
+
+	MutantStack<int>::iterator it = mStack.begin();
+	MutantStack<int>::iterator ite = mStack.end();
+
+	++it;
+	--it;
+
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
 
 	cout << endl << "* realStack(stack) *" << endl;
 
-	std::stack<int> realStack(stack);
+	std::stack<int> realStack(mStack);
 
 	cout << "realStack.top(): " << realStack.top() << endl;
 
