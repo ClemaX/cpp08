@@ -4,29 +4,17 @@
 #include <deque>
 
 template<typename T>
-class MutantStack
+class MutantStack	:	public std::deque<T>
 {
-protected:
-	std::deque<T>	data;
-
 public:
-	MutantStack()	:	data() {};
+	MutantStack() {};
 
 	~MutantStack() {};
 
-	inline MutantStack&	operator=(MutantStack const& rhs) { data = rhs.data; }
+	inline T const&	top() const { return std::deque<T>::back(); }
 
-	inline T const&	top() const { return data.back(); }
-
-	inline bool	empty() const { return data.empty(); }
-	inline bool	size() const { return data.size(); }
-
-	inline void	push(const T& value) { data.push_back(value); }
-	inline void	pop() { data.pop_back(); };
-
-	inline void	swap(MutantStack& other) throw() { data.swap(other.data); }
-
-	inline T&	operator[](size_t index) { return data[index]; };
+	inline void	push(const T& value) { std::deque<T>::push_back(value); }
+	inline void	pop() { std::deque<T>::pop_back(); };
 };
 
 template<typename T>
